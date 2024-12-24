@@ -204,6 +204,11 @@ header {
   gap: 15px;
 }
 
+.error_message > .error_message_group > .error_message_message > p {
+  color: red;
+  font-weight: bold;
+}
+
 .form_input_wrapper {
   width: 100%;
 }
