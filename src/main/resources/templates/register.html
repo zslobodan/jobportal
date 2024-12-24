@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register - JobPortal</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg">
+<div class="header_wrapper">
+  <header>
+    <div class="nav_left">
+      <a href="/">
+        <label class="nav_logo">
+          <span>Job</span>Portal
+        </label>
+      </a>
+    </div>
+  </header>
+</div>
+
+<div class="register_form_wrapper">
+  <div class="register_form_title">
+    <h1>Create Account</h1>
+  </div>
+  <div class="register_form_container">
+    <form th:action="@{/register/new}"
+          th:object="${user}"
+          method="post"
+          class="register_form"
+    >
+      <div class="form_input_group">
+        <div class="form_input_wrapper">
+          <input
+            class="form_input"
+            placeholder="Email"
+            name="email"
+            th:field="*{email}"
+            type="email"
+            required
+          />
+        </div>
+        <div class="form_input_wrapper">
+          <input
+            class="form_input"
+            min="8"
+            placeholder="Password"
+            name="password"
+            th:field="*{password}"
+            type="password"
+            required
+          />
+        </div>
+      </div>
+      <div class="form_select_group">
+        <div class="form_input_wrapper">
+          <select
+            class="form_select"
+            required
+            th:field="*{userTypeId}"
+          >
+            <th:block th:each="userType :${getAllTypes}">
+              <option
+                th:text="${userType.userTypeName}"
+                th:value="${userType.userTypeId}"
+              ></option>
+            </th:block>
+          </select>
+        </div>
+      </div>
+      <div class="form_button_group">
+        <button type="submit" class="submit_button">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div>
+  <footer>
+    <label class="footer-copy-right">Copyright © jobportal.com</label>
+  </footer>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>
