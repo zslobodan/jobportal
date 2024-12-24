@@ -5,9 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JobPortal</title>
   <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
-<h1>Hello there!</h1>
+<body class="bg">
+<div class="header_wrapper">
+  <header>
+    <div class="nav_left">
+      <label class="nav_logo">
+        <span>Job</span>Portal
+      </label>
+    </div>
+    <div class="nav_right">
+      <nav class="nav_wrapper">
+        <ul class="nav_menu">
+          <li>
+            <a th:href="@{/login}">
+              Login
+            </a>
+          </li>
+          <li>
+            <a th:href="@{/register}">
+              Register
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<div class="search_box_wrapper">
+  <form th:action="@{/global-search}">
+    <div class="search_box">
+      <div class="search_box_inner">
+        <input type="text" class="left-input" placeholder="Search for a job" name="job" th:value="${job}"/>
+        <input type="text" class="right-input" placeholder="Enter a location" name="location" th:value="${location}"/>
+        <button type="submit"><i>
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+               viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+          </svg>
+        </i></button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div>
+  <footer>
+    <label class="footer-copy-right">Copyright © jobportal.com</label>
+  </footer>
+</div>
 <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
