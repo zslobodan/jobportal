@@ -34,4 +34,8 @@ public class RecruiterProfile {
 
 	@Column(length = 64)
 	private String profilePhoto;
+
+	public RecruiterProfile(Users users) {
+		this.userId = users;
+	}
 }
