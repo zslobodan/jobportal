@@ -27,12 +27,7 @@ button:focus {
   width: 100vw;
   height: 100%;
   overflow: hidden;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 34, 68, 0.65),
-    rgba(0, 34, 68, 0.65)
-  ),
-  url("../assets/pobednik.jpg");
+  background-image: linear-gradient(to right, rgba(0, 34, 68, 0.65), rgba(0, 34, 68, 0.65)), url("../assets/pobednik.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -59,7 +54,7 @@ header {
 }
 
 .nav_logo > span {
-  color: rgba(246, 103, 76, 0.80);
+  color: rgba(246, 103, 76, 0.8);
   font-weight: bolder;
 }
 
@@ -70,17 +65,22 @@ header {
   gap: 20px;
 }
 
-.nav_menu, li {
+.nav_menu,
+li {
   list-style: none;
 }
 
-.nav_menu, li, a {
+.nav_menu,
+li,
+a {
   color: white;
   transition: all 0.2s ease-in;
 }
 
-.nav_menu, li, a:hover {
-  color: rgba(246, 103, 76, 0.80);
+.nav_menu,
+li,
+a:hover {
+  color: rgba(246, 103, 76, 0.8);
   font-weight: bold;
 }
 
@@ -107,7 +107,7 @@ header {
   height: 60px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-right: none;
-  background-color: rgba(0, 0, 0, 0.20);
+  background-color: rgba(0, 0, 0, 0.2);
   color: white;
 }
 
@@ -123,9 +123,6 @@ header {
   border-radius: 10px 0 0 10px;
 }
 
-.search_box_inner .right-input {
-}
-
 .search_box_inner input:focus {
   outline: none;
 }
@@ -134,7 +131,7 @@ header {
   padding: 5px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-left: none;
-  background-color: rgba(0, 0, 0, 0.20);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0 10px 10px 0;
 }
 
@@ -288,4 +285,105 @@ header {
   .register_form_container {
     padding: 20px;
   }
+}
+
+.form_checkbox_group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form_checkbox_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.form_checkbox_text {
+  font-size: 0.875rem;
+}
+
+.form_link {
+  color: rgba(246, 103, 76, 0.8);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in;
+}
+
+.form_link:hover {
+  color: rgba(246, 103, 76, 1);
+}
+
+.form_footer {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.dashboard_content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard_header h1 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.job_listings {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.job_card {
+  display: block;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+.job_card:hover {
+  background-color: #f8f9fa;
+}
+
+.job_card_content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+.user-name {
+  padding: 0 1rem;
+  color: rgb(211, 211, 211);
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
 }

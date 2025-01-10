@@ -1,11 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - JobPortal</title>
-</head>
-<body>
-<h1>Dashboard</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - JobPortal</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body class="bg">
+    <div class="header_wrapper">
+      <header>
+        <div class="nav_left">
+          <a th:href="@{/dashboard/}">
+            <label class="nav_logo"> <span>Job</span>Portal </label>
+          </a>
+        </div>
+        <div class="nav_right">
+          <nav class="nav_wrapper">
+            <ul class="nav_menu">
+              <li sec:authorize="hasAuthority('Job Seeker')">
+                <a th:href="@{/dashboard/}"> <i class="fas fa-search"></i> Search Jobs </a>
+              </li>
+              <li sec:authorize="hasAuthority('Job Seeker')">
+                <a th:href="@{/saved-jobs/}"> <i class="fa-solid fa-eye"></i> Saved Jobs </a>
+              </li>
+              <li sec:authorize="hasAuthority('Job Seeker')">
+                <a th:href="@{/job-seeker-profile/}"> <i class="fa-solid fa-pencil"></i> Edit Profile </a>
+              </li>
+
+              <li sec:authorize="hasAuthority('Recruiter')">
+                <a th:href="@{/dashboard/add}"> <i class="fa-solid fa-file-circle-plus"></i> Post Job </a>
+              </li>
+              <li sec:authorize="hasAuthority('Recruiter')">
+                <a th:href="@{/dashboard/}"> <i class="fa-solid fa-eye"></i> View Jobs </a>
+              </li>
+              <li sec:authorize="hasAuthority('Recruiter')">
+                <a th:href="@{/recruiter-profile/}"> <i class="fa-solid fa-pencil"></i> Edit Account </a>
+              </li>
+
+              <li>
+                <span th:if="${user.firstName != null && user.lastName != null}" th:text="${user.firstName + ' ' + user.lastName}" class="user-name">
+                </span>
+                <span th:unless="${user.firstName != null && user.lastName != null}" th:text="${username}" class="user-name"> </span>
+              </li>
+              <li>
+                <a th:href="@{/logout}" class="logout-btn">Logout</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+    <div class="dashboard_content">
+      <div class="dashboard_header" sec:authorize="hasAuthority('Recruiter')">
+        <h1>Recruiter Dashboard</h1>
+      </div>
+
+      <div class="job_listings">
+        <h2 sec:authorize="hasAuthority('Job Seeker')">Search Results</h2>
+
+        <div class="job_list">
+          <th:block th:each="jobPost:${jobPost}">
+            <a th:href="@{/job-details-apply/{id}(id=${jobPost.jobPostId})}" class="job_card">
+              <div class="job_card_content">
+                <div class="job_title">
+                  <h3>[[${jobPost.jobTitle}]]</h3>
+                  <span class="badge" sec:authorize="hasAuthority('Recruiter')" th:text="'(' + ${jobPost.totalCandidates} + ' Candidates Applied)'">
+                  </span>
+                  <span class="badge" sec:authorize="hasAuthority('Job Seeker')" th:if="${jobPost.isActive == true}">Applied</span>
+                  <span class="badge" sec:authorize="hasAuthority('Job Seeker')" th:if="${jobPost.isSaved == true}">Saved</span>
+                </div>
+                <div class="job_location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span th:text="${jobPost.jobLocationId.city + ', ' + jobPost.jobLocationId.state}"></span>
+                </div>
+                <div class="company_name">
+                  <i class="fas fa-building"></i>
+                  <span th:text="${jobPost.jobCompanyId.name}"></span>
+                </div>
+              </div>
+            </a>
+          </th:block>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <footer>
+        <label class="footer-copy-right">Copyright © jobportal.com</label>
+      </footer>
+    </div>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+  </body>
 </html>
